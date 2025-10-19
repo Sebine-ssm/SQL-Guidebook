@@ -180,9 +180,11 @@ WHERE
 	(g.Name = 'Rock'
 		AND t.composer = 'Alanis Morissette & Glenn Ballard')
 LIMIT 15;
+###
 Explanation: This query selects Name columns from both the track and Genre tables and Composer column from the Track table and does a right join where all the rows of the table on the right (Genre) matches with the rows in the left table (Track) by a many-to-one relationship using the GenreID column of both the tables and returns the list of rock songs Alanis Morissette & Glenn Ballard have made. The acronyms g and t are the aliases of the tables Genre and Track respectively and aliases are creating using the 'as' keyword. It is created for better readibility and convienience. The 'WHERE' clause filters rows which meets a certain criteria, and here it is to locate 'Rock' songs made by the composer 'Alanis Morissette & Glenn Ballard'. 
 Output: ![answer](Q1_SQL.png)
 
+```sql
 Question 2: Give me a report of customers from Argentina to see the proportion of customers who sepnt less than, equal to and greater than $10.
 SELECT
 	BillingCountry,
