@@ -19,6 +19,7 @@ anything that starts with a '--' means I am commenting what the code does.
 
 The below queries are posted to show how the tables are created and how some are connected to show the Data Setup.
 
+```sql
 CREATE TABLE [Album]  --creates a table called 'Album'
 (
     [AlbumId] INTEGER  NOT NULL, --creates a column neamed 'AlbumId' which does not have any null values and consists of integers.
@@ -164,7 +165,7 @@ CREATE TABLE [MediaType]  --table of different mediatype info like MPEG, ACC and
     [Name] NVARCHAR(120),
     CONSTRAINT [PK_MediaType] PRIMARY KEY  ([MediaTypeId])
 );
-
+       ```
 Question 1: List the names of rock songs 'Alanis Morissette & Glenn Ballard' have made.
 SELECT              
 	g.Name, 
