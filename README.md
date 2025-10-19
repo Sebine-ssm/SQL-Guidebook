@@ -202,7 +202,7 @@ WHERE
 Explanation: This query returns an output of customers from 'Argentina' who paid less than $10('Too Low'), equal to $10('At 10'), and greater than $10('Too High') from the Invoice table. Logical statements in SQL are done using CASE WHEN statements. Case acts like 'if' and 'elseif' and then would assign the names to the respective criteria. You should end the case statements with the keyword 'END'. 'AS' aliases the name of the column which shows the results of the CASE WHEN statements for each of the rows. 
 Output: ![answer](Q2_SQL.png)
 
-```
+```sql
 Question 3: Give me a sample of invoice rankings for Argentina using multiple ranking.
 SELECT
 	BillingCountry,
@@ -224,7 +224,7 @@ WHERE
 Explanantion: This query returns multiple ranks of purchases for customer from 'Argentina'. Rank() ranks the rows based on the values in the Total column in descending order within each country in the 'BillingCountry' column so does the DENSE_RANK() and ROW_NUMBER() commands, but they do it in different ways. If you look at 'rank_within_country' column, you would see that 5 appears twice (due to the tie) and right after that you see 7, this is because the RANK() ranks numbers based on which row number they are in. If you look closely, you will see that the second number 5 is in row number 6 (just a side note). Whereas for DENSE_RANK() it ranks numbers numerically (look at the 'cumulative_rank_within_country' column). If you look at the 'rownumber_country' column, you will see that it ranks everything numerically in descending order, but doesn't care about the tied values. The WHERE clause filters the rows where the 'BillingCountry' is 'Argentina'. The table used here is the Invoice table. 
 Output: ![answer](Q3_SQL.png)
 
-```
+```sql
 Question 4: What are the average, minimum and maximum costs of the customers? Also return the number of purchases made by each of them. Return an output of 15 rows.
 
 WITH mini_table AS (
@@ -259,7 +259,7 @@ ORDER BY
 Explanation: This query uses a temporary table named 'mini_table' to create a table using a left join with two existing tables Customer (as the left table) and Invoice (as the right table) by one-to-many relationship (where the rows on the customer table would match with the rows on the right table (Invoice)). It performs a LEFT JOIN between the Customer and Invoice tables based on the CustomerId, ensuring that all customers are included even if they have no invoices. The inner query shows the FirstName, LastName columns from the Customers table (FullName column is created by concatenating the FirstName and LastName columns from the Customers table) and the aggregate functions AVG, MIN, MAX, and COUNT used on the Total column from the Invoice table. The outer query (the query outside of the mini_table) would generate the average, minimum, and maximum values of avg_purchase_per_customer, min_total, and max_total columns of the inner query (mini_table). Basically it provides the overall average, minimum, maximum, and count of the total column of customers in this merged table. 'AS' is the keyword used for aliasing a column or a table. 'ORDER BY' clause orders by FullName in ascending order alphabetically.  
 Output: ![answer](Q4-SQL.png)
 
-```
+```sql
 Question 5: What is the tracks of Classical music?
 
 SELECT
@@ -277,7 +277,8 @@ LIMIT 15;
 ```
 Explanation: This query returns the first 15 track IDs of 'Classical' music. The WHERE clause specifies which rows to look for. Here it checks for the tracks where the name of the playlist is Classical. This query uses an inner join where only the matching rows of both the tables 'Playlist' and 'PlaylistTrack' are joined and kept. Here the tables are joined on the 'PlayistId' column of both the tables. 
 Output: ![answer](Q5_SQL.png)
-```
+
+```sql
 Question 6: Retreive a list of Names of Media types whose Bytes are between 8226934 AND 12675305 
 SELECT
 	m.Name,
@@ -294,6 +295,7 @@ LIMIT 15;
 Explanation:  The query returns the Names and Bytes of 15 MediaTypes which falls between 8226934 AND 12675305 bytes. Here a outer join is used that would create a many-to-many relationship between tables Track and MediaType. 
 Output: ![answer](Q6_SQL.png)
 
+```sql
 Question 7: Which customers didn't buy anything? 
 SELECT
 	CustomerId
@@ -306,9 +308,11 @@ SELECT
 FROM
 	Invoice
   LIMIT 15;
+```
 Explanation: The first part of the code before 'EXCEPT' returns all the customers and the second part of the code after 'EXCEPT' returns only all invoices. The 'EXCEPT' operation looks at both the queries before and after it, and takes only those customers who don't have any invoices. In this case, there are no customers who didn't make purchases. 
 Output: ![alt text](Q7_SQL.png)
 
+```sql
 Question 8: For each customer's purchase, what were the amounts of their previous and next purchases?
 SELECT
 	CustomerId,
@@ -323,9 +327,11 @@ ORDER BY
 FROM
 	Invoice
 LIMIT 15;
+```
 Explanation: This query shows each customer's invoice along with the total of their previous and next purchases, ordered by invoice date in ascending order. LEAD() calcuates forward (forward rows of purchases) purchases within each customer and LAG() does the same but calculates previous rows of purchases within each customer. Here you would see 15 rows due to the LIMIT specified. 
 Output: ![alt text](Q8_SQL.png)
 
+```sql
 Question 9: Insert a row of data of an employee into the Employee table with the following data: Employee ID = 9, LastName = 'Joseph', FirstName = 'Priya', Title = 'Sales Manager', ReportsTo = 1, Birthdate = '1973-03-10 00:00:00', HireDate = '2004-03-10 00:00:00', Address = '1111 Andrew Drive NW', City = 'Edmonton', State= 'AB', Country = 'Canada', Email = 'priya@gmail.com'
 
 INSERT
@@ -354,11 +360,13 @@ VALUES (9,
 'AB',
 'Canada',
 'priya@chinook.corp');
+```
 
 Explanation: This query inserts the mentioned information into the appropriate columns using the INSERT INTO clause into the Employee table. This adds a new row of information to the Employee Table.
 Output:  ![alt text](Q9_SQL1.png)
 ![alt text](Q9_SQL2.png)
 
+```sql
 Question 10: Update the row of 'Laura Callahan' whose employee ID is 8 by changing her email address to 'laura@chinookcorp.com' from 'priya.newemail@example.com'.
 UPDATE
 	Employee
@@ -366,7 +374,7 @@ SET
 	Email = 'laura@chinookcorp.com'
 WHERE
 	EmployeeId = 8;
-
+```
 Explanation: This query updates the information using the UPDATE clause which sets the information using the clause 'SET' to the Email column to the employee ID 8. 
 Output: ![alt text](Q10_SQL.png)
 
