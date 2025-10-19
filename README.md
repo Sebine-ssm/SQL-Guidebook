@@ -165,7 +165,7 @@ CREATE TABLE [MediaType]  --table of different mediatype info like MPEG, ACC and
     [Name] NVARCHAR(120),
     CONSTRAINT [PK_MediaType] PRIMARY KEY  ([MediaTypeId])
 );
-```
+
 Question 1: List the names of rock songs 'Alanis Morissette & Glenn Ballard' have made.
 SELECT              
 	g.Name, 
