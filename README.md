@@ -165,7 +165,7 @@ CREATE TABLE [MediaType]  --table of different mediatype info like MPEG, ACC and
     [Name] NVARCHAR(120),
     CONSTRAINT [PK_MediaType] PRIMARY KEY  ([MediaTypeId])
 );
-       ```
+```
 Question 1: List the names of rock songs 'Alanis Morissette & Glenn Ballard' have made.
 SELECT              
 	g.Name, 
@@ -180,7 +180,7 @@ WHERE
 	(g.Name = 'Rock'
 		AND t.composer = 'Alanis Morissette & Glenn Ballard')
 LIMIT 15;
-###
+                            ```
 Explanation: This query selects Name columns from both the track and Genre tables and Composer column from the Track table and does a right join where all the rows of the table on the right (Genre) matches with the rows in the left table (Track) by a many-to-one relationship using the GenreID column of both the tables and returns the list of rock songs Alanis Morissette & Glenn Ballard have made. The acronyms g and t are the aliases of the tables Genre and Track respectively and aliases are creating using the 'as' keyword. It is created for better readibility and convienience. The 'WHERE' clause filters rows which meets a certain criteria, and here it is to locate 'Rock' songs made by the composer 'Alanis Morissette & Glenn Ballard'. 
 Output: ![answer](Q1_SQL.png)
 
@@ -198,7 +198,7 @@ FROM
 	Invoice
 WHERE
 	BillingCountry = 'Argentina';
-
+                                    ```
 Explanation: This query returns an output of customers from 'Argentina' who paid less than $10('Too Low'), equal to $10('At 10'), and greater than $10('Too High') from the Invoice table. Logical statements in SQL are done using CASE WHEN statements. Case acts like 'if' and 'elseif' and then would assign the names to the respective criteria. You should end the case statements with the keyword 'END'. 'AS' aliases the name of the column which shows the results of the CASE WHEN statements for each of the rows. 
 Output: ![answer](Q2_SQL.png)
 
